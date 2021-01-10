@@ -5,6 +5,7 @@
  */
 package logica.analisis;
 
+import java.text.DecimalFormat;
 import java.util.Vector;
 import weka.classifiers.functions.LinearRegression;
 import weka.core.Attribute;
@@ -76,18 +77,22 @@ public class RegresionLineal extends Supervisado{
 
     @Override
     public String evaluacionModelo() {
-        /*
-        if(this.getInstancias() != null){
+       if(this.getInstancias() != null){
             try {
+                DecimalFormat df = new DecimalFormat("#.0000");
                 Evaluation ev = new Evaluation(this.getInstancias());
-                ev.crossValidateModel(this.getRegresion_lineal(), this.getInstancias(), 10, new Random(1), new String[]{});
-                return ev.toSummaryString();
+                ev.crossValidateModel(this.getRegresion_lineal(), this.getInstancias(), 5, new Random(1), new String[]{});
+                String info="\n\tValores de evaluación del modelo ";
+                info+="\nCoeficiente de correlacion: "+df.format(ev.correlationCoefficient());
+                info+="\nError absoluto medio      : "+df.format(ev.meanAbsoluteError());
+                info+="\nError del cuadrado medio  : "+df.format(ev.rootMeanSquaredError());
+                info+="\nError absoluto relativo   : "+df.format(ev.relativeAbsoluteError())+" %";
+                info+="\nError cuadratico relativo : "+df.format(ev.rootRelativeSquaredError())+" %";
+                info+="\nNumero de instancias      : "+((int)ev.numInstances());
+                return info;
             } catch (Exception ex) {
                 Logger.getLogger(RegresionLineal.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }*/
-        if(this.getRegresion_lineal() != null){
-            return this.getRegresion_lineal().toString();
         }
         return "";
     }
