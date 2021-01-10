@@ -14,8 +14,11 @@ import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import logica.Etiqueta;
 import logica.GraficaRegresion;
 import logica.LeerArchivoCsv;
+import logica.ParserData;
+import logica.analisis.RegresionLineal;
 import org.jfree.chart.ChartPanel;
 
 /**
@@ -281,23 +284,25 @@ public class VistaPrincipal extends javax.swing.JFrame {
             LeerArchivoCsv csv = new LeerArchivoCsv(selectedFile.getAbsolutePath());
             try {
                 this.datos = csv.procesar();
-                System.out.print("####### Datos #######");
-                System.out.print(this.datos.toString());
+                ParserData paserDatos = new ParserData(this.datos);
+                Etiqueta etiqueta = paserDatos.getDataTemperatura();
                 /**
                  * Aplicar analisis coef
                  */
-//                jRegretion.setText("Aqui van los datos de la regresion");
-//
-//                GraficaRegresion gr = new GraficaRegresion(datos, coef);
-//                ChartPanel cp = gr.generarGrafica();
-//
-//                Jpanelgrafic1.removeAll();
-//                Jpanelgrafic1.setLayout(new BorderLayout());
-//                Jpanelgrafic1.add(cp, BorderLayout.CENTER);
-//                Jpanelgrafic1.validate();
+
+                RegresionLineal r = new RegresionLineal(etiqueta.getCabecera(), etiqueta.getDatos());
+                jRegretion.setText("Aqui van los datos de la regresion");
+
+                GraficaRegresion gr = new GraficaRegresion(datos, r.coeficienteModelo());
+                ChartPanel cp = gr.generarGrafica();
+
+                Jpanelgrafic1.removeAll();
+                Jpanelgrafic1.setLayout(new BorderLayout());
+                Jpanelgrafic1.add(cp, BorderLayout.CENTER);
+                Jpanelgrafic1.validate();
 
             } catch (Exception e) {
-                System.out.print("####### ERROR #######");
+                System.out.print("####### ERROR VISTA PRINCIPAL #######");
                 System.err.print(e);
             }
 

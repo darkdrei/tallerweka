@@ -52,7 +52,7 @@ public class GraficaRegresion {
         XYSeries series2 = new XYSeries("Regresión");
         for (int i = 0; i < this.datos.size(); i++) {
             v = (VariableA) this.datos.get(i);
-            Double pred = coef[0] * v.getTemperature() + coef[2];
+            Double pred = coef[0] * v.getTimestamp() + coef[2];
             series2.add(v.getTimestamp(), pred);
         }
         XYSeriesCollection dataset = new XYSeriesCollection();
