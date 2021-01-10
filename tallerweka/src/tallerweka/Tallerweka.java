@@ -34,13 +34,11 @@ public class Tallerweka {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VistaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         VistaPrincipal vista = new VistaPrincipal();
         vista.pack();
         vista.setResizable(false);
         vista.setVisible(true);
-
-        System.out.print("#### Main #####");
     }
-    
+
 }

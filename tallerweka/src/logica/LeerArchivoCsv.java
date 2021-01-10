@@ -15,7 +15,10 @@ import com.opencsv.exceptions.CsvException;
 import java.util.List;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import modelos.VariableA;
 
 /**
@@ -35,17 +38,31 @@ public class LeerArchivoCsv {
         CSVParser csvParser = new CSVParserBuilder().withSeparator(';').build();
         CSVReader reader = new CSVReaderBuilder(new FileReader(this.path))
                 .withCSVParser(csvParser)
+                .withSkipLines(1)
                 .build();
         List<String[]> r = reader.readAll();
         r.forEach(x -> {
             if (x.length == 4) {
-                VariableA v = new VariableA(
-                        Double.parseDouble(x[0]),
-                        Double.parseDouble(x[1]),
-                        Integer.parseInt(x[2]),
-                        Double.parseDouble(x[3])
-                );
-                datos.add(v);
+                try {
+                    String timestampString = x[0];
+                    String timeFormated = timestampString.replace('T', ' ');
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                    Date parsedDate = dateFormat.parse(timeFormated);
+                    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+
+                    VariableA v = new VariableA(
+                            (double) timestamp.getTime(),
+                            Double.parseDouble(x[1].replace(',', '.')),
+                            Integer.parseInt(x[2]),
+                            Double.parseDouble(x[3].replace(',', '.'))
+                    );
+                    datos.add(v);
+
+                } catch (Exception e) {
+                    System.err.println("##### ERROR LeerArchivoCsv #####");
+                    System.err.println(e);
+                }
+
             }
         });
         return datos;
