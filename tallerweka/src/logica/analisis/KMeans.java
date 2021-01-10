@@ -22,10 +22,18 @@ import weka.core.Instances;
  */
 public class KMeans extends NoSupervisado{
     private SimpleKMeans kmeans_simple = null;
+    private int clusters;
     
     public KMeans(String[] cabecera, ArrayList<Vector> datos) {
         super(cabecera, datos);
-        generar();
+        this.setClusters(3);
+        this.generar();
+    }
+    
+    public KMeans(String[] cabecera, ArrayList<Vector> datos, int clouster) {
+        super(cabecera, datos);
+        this.setClusters(clouster);
+        this.generar();
     }
     
     @Override
@@ -35,8 +43,7 @@ public class KMeans extends NoSupervisado{
             for (String etiqueta : this.getCabecera()) {
                 this.getFv().addElement(new Attribute(etiqueta));
             }
-            Instances dataset = new Instances("dataset", this.getFv(), this.getDatos().size());
-            dataset.setClassIndex(dataset.numAttributes() - 1);
+            Instances dataset = new Instances("dataset", this.getFv(), 4);
             int VALOR_ENTERO = 0;
             double VALOR_DOUBLE = 1.1;
             for(int i=0; i < this.getDatos().size(); i++){
@@ -51,6 +58,7 @@ public class KMeans extends NoSupervisado{
             }
             this.setInstancias(dataset);
             SimpleKMeans skm =new SimpleKMeans();
+            skm.setNumClusters(3);
             skm.buildClusterer(dataset);
             this.setKmeans_simple(skm);
         } catch (Exception ex) {
@@ -78,9 +86,20 @@ public class KMeans extends NoSupervisado{
                         Double.parseDouble(temp.toString(0)), 
                         Double.parseDouble(temp.toString(1))
                 );
+                coordenadas.add(cordenada);
             }
             return coordenadas;
         }
         return null;
     } 
+
+    public int getClusters() {
+        return clusters;
+    }
+
+    public void setClusters(int clusters) {
+        this.clusters = clusters;
+    }
+    
+    
 }

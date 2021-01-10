@@ -65,9 +65,20 @@ public class Practicas {
         /* Regresion Lneal */
         RegresionLineal r = new RegresionLineal(new String[]{"Ano", "Poblacion"}, data);
         out.println("Evaluación de modelo: "+r.getRegresion_lineal());
+        out.println("Numero de coeficientes: "+r.coeficienteModelo().length);
+        for(Object valor:r.coeficienteModelo()){
+            out.println(valor);
+        }
         /* KMeans */
         KMeans km = new KMeans(new String[]{"Ano", "Poblacion"}, data);
         out.println("Evaluación de modelo: "+km.getKmeans_simple());
+        Vector<Coordenada> coordenadas = km.centroides();
+        out.println("Numero de Centroides "+coordenadas.size());
+        for(Coordenada c: coordenadas){
+            out.println(c.toString());
+        }
+        
+        
     }
     
 }
