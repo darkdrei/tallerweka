@@ -23,24 +23,30 @@ import modelos.VariableA;
  * @author mario
  */
 public class LeerArchivoCsv {
+
     private String path;
-  
+
     public LeerArchivoCsv(String archivo) {
         this.path = archivo;
     }
-    
+
     public Vector procesar() throws IOException, CsvException {
         Vector datos = new Vector();
         CSVParser csvParser = new CSVParserBuilder().withSeparator(';').build();
         CSVReader reader = new CSVReaderBuilder(new FileReader(this.path))
-            .withCSVParser(csvParser)
-            .build();
+                .withCSVParser(csvParser)
+                .build();
         List<String[]> r = reader.readAll();
-        r.forEach(x ->{
-          if (x.length == 4) {
-              VariableA v = new VariableA(x[0], x[1], x[2], x[3]);
-              datos.add(v);
-          }
+        r.forEach(x -> {
+            if (x.length == 4) {
+                VariableA v = new VariableA(
+                        Double.parseDouble(x[0]),
+                        Double.parseDouble(x[1]),
+                        Integer.parseInt(x[2]),
+                        Double.parseDouble(x[3])
+                );
+                datos.add(v);
+            }
         });
         return datos;
     }

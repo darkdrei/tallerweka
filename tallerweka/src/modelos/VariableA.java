@@ -10,48 +10,48 @@ package modelos;
  * @author mario
  */
 public class VariableA {
-    private String timestamp;
-    private String temperature;
-    private String humidity;
-    private String speed;
 
-    public VariableA(String timestamp, String temperature, String humidity, String speed) {
+    private Double timestamp;
+    private Double temperature;
+    private int humidity;
+    private double speed;
+
+    public VariableA(Double timestamp, Double temperature, int humidity, double speed) {
         this.timestamp = timestamp;
         this.temperature = temperature;
         this.humidity = humidity;
         this.speed = speed;
     }
 
-    public String getTimestamp() {
+    public Double getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Double timestamp) {
         this.timestamp = timestamp;
     }
 
-    public String getTemperature() {
+    public Double getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(String temperature) {
+    public void setTemperature(Double temperature) {
         this.temperature = temperature;
     }
 
-    public String getHumidity() {
+    public int getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(String humidity) {
+    public void setHumidity(int humidity) {
         this.humidity = humidity;
     }
 
-    public String getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
-    public void setSpeed(String speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
-    
 }
