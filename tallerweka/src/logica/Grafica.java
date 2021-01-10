@@ -26,41 +26,49 @@ public class Grafica {
     private String label1;
     private String label2;
     private XYDataset dataset;
+    private int type;
 
-    public Grafica(String titulo, String label1, String label2, XYDataset dataset) {
+    public Grafica(String titulo, String label1, String label2, XYDataset dataset, int type) {
         this.titulo = titulo;
         this.label1 = label1;
         this.label2 = label2;
         this.dataset = dataset;
+        this.type = type;
     }
 
     public ChartPanel generar() {
-        JFreeChart chart = ChartFactory.createXYLineChart(
-                this.titulo,
-                this.label1,
-                this.label2,
-                this.dataset,
-                PlotOrientation.VERTICAL,
-                true,
-                false,
-                false
-        );
+        JFreeChart chart;
+        if (this.type == 1) {
+            chart = ChartFactory.createXYLineChart(
+                    this.titulo,
+                    this.label1,
+                    this.label2,
+                    this.dataset,
+                    PlotOrientation.VERTICAL,
+                    true,
+                    false,
+                    false
+            );
+        } else {
+            chart = ChartFactory.createScatterPlot(
+                    this.titulo,
+                    this.label1,
+                    this.label2,
+                    this.dataset,
+                    PlotOrientation.VERTICAL,
+                    true,
+                    false,
+                    false
+            );
+        }
         XYPlot plot = chart.getXYPlot();
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
-        renderer.setSeriesPaint(0, Color.RED);
-        renderer.setSeriesStroke(0, new BasicStroke(2.0f));
-        renderer.setSeriesPaint(1, Color.BLUE);
-        renderer.setSeriesStroke(1, new BasicStroke(2.0f));
-        renderer.setSeriesPaint(0, Color.RED);
-        renderer.setSeriesStroke(0, new BasicStroke(2.0f));
-        renderer.setSeriesPaint(1, Color.BLUE);
-        renderer.setSeriesStroke(1, new BasicStroke(2.0f));
+        renderer.setSeriesLinesVisible(0, true);
+        renderer.setSeriesShapesVisible(0, false);
+        renderer.setSeriesLinesVisible(1, true);
+        renderer.setSeriesShapesVisible(1, false);
         plot.setRenderer(renderer);
         plot.setBackgroundPaint(Color.white);
-        plot.setRangeGridlinesVisible(false);
-        plot.setDomainGridlinesVisible(false);
-
-        chart.getLegend().setFrame(BlockBorder.NONE);
         ChartPanel cp = new ChartPanel(chart);
         return cp;
     }

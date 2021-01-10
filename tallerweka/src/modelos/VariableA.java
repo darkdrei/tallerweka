@@ -11,31 +11,31 @@ package modelos;
  */
 public class VariableA {
 
-    private Double timestamp;
-    private Double temperature;
+    private double timestamp;
+    private double temperature;
     private int humidity;
     private double speed;
 
-    public VariableA(Double timestamp, Double temperature, int humidity, double speed) {
+    public VariableA(double timestamp, double temperature, int humidity, double speed) {
         this.timestamp = timestamp;
         this.temperature = temperature;
         this.humidity = humidity;
         this.speed = speed;
     }
 
-    public Double getTimestamp() {
+    public double getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Double timestamp) {
+    public void setTimestamp(double timestamp) {
         this.timestamp = timestamp;
     }
 
-    public Double getTemperature() {
+    public double getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Double temperature) {
+    public void setTemperature(double temperature) {
         this.temperature = temperature;
     }
 

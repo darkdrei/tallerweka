@@ -63,7 +63,7 @@ public class GraficaRegresion {
 
     public ChartPanel generarGrafica() {
         XYDataset dataset = this.crearDataset();
-        Grafica g = new Grafica("Regresión Temperatura", "Marca de tiempo", "Temperatura", dataset);
+        Grafica g = new Grafica("Regresión Temperatura", "Marca de tiempo", "Temperatura", dataset, 1);
         return g.generar();
     }
 }
