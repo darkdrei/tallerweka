@@ -76,6 +76,7 @@ public class RegresionLineal extends Supervisado{
 
     @Override
     public String evaluacionModelo() {
+        /*
         if(this.getInstancias() != null){
             try {
                 Evaluation ev = new Evaluation(this.getInstancias());
@@ -84,6 +85,9 @@ public class RegresionLineal extends Supervisado{
             } catch (Exception ex) {
                 Logger.getLogger(RegresionLineal.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }*/
+        if(this.getRegresion_lineal() != null){
+            return this.getRegresion_lineal().toString();
         }
         return "";
     }
