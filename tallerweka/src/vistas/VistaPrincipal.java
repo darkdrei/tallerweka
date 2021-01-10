@@ -160,6 +160,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         errorMsgLabel.setForeground(new java.awt.Color(255, 51, 51));
         errorMsgLabel.setText("Por favor seleccionefecha y hora con el siguiente formato YYYY-MM-DD HH:MM:SS");
 
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -275,7 +281,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -300,8 +306,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 this.datos = csv.procesar();
                 ParserData paserDatos = new ParserData(this.datos);
                 Etiqueta etiquetaTem = paserDatos.getDataTemperatura();
-                Etiqueta etiquetaTemHum = paserDatos.getDataTemperaturaHumedad();
-                Etiqueta etiquetaTempVel = paserDatos.getDataTemperaturaVelocidad();
 
                 /**
                  * Aplicar analisis coef
@@ -339,7 +343,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 jPanel2.add(cp, BorderLayout.CENTER);
                 jPanel2.validate();
 
-                GraficaClustering gc1 = new GraficaClustering(this.datos);
+                GraficaClustering gc1 = new GraficaClustering(
+                        this.datos,
+                        kmeans_temperatura_humedad.centroides(),
+                        kmeans_temperatura_velocidad_viento.centroides()
+                );
                 ChartPanel cp2 = gc1.generarGraficaTemHum();
 
                 jPanel3.removeAll();
@@ -372,7 +380,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             parsedDate = dateFormat.parse(value);
             Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
             double timeDouble = (double) timestamp.getTime();
-            this.jTextPane2.setText("" + this.rLineal.prediccion(timeDouble));
+            this.jTextPane2.setText(this.rLineal.prediccion(timeDouble) + "");
         } catch (ParseException ex) {
             Logger.getLogger(VistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -396,6 +404,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.predecirBtn.setEnabled(isValidDate || "".equals(date));
         this.errorMsgLabel.setVisible(!isValidDate && !"".equals(date));
     }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTabbedPane1StateChanged
 
     /**
      * @param args the command line arguments
