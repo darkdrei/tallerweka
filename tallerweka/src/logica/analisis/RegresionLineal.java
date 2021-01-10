@@ -26,7 +26,7 @@ public class RegresionLineal extends Supervisado{
     public RegresionLineal(String[] cabecera, ArrayList<Vector> datos) {
         super(cabecera, datos);
         this.regresion_lineal = null;
-        generar();
+        this.generar();
     }
 
     @Override
