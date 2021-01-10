@@ -64,8 +64,10 @@ public class RegresionLineal extends Supervisado{
 
     @Override
     public double prediccion(double valor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        double[] coeficientes = this.coeficienteModelo();
+        return (valor*coeficientes[0]+coeficientes[2]);
     }
+
 
     public LinearRegression getRegresion_lineal() {
         return regresion_lineal;
