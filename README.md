@@ -14,4 +14,4 @@ Tener en cuenta 3 Clusters.
 - Cargar los datos a partir de un archivo CSV y hacer uso de una librería para leer los datos.
 - Cargar las librerias de manera relativa en el proyecto de Netbeans, adjuntar el proyecto.
 - Subir el proyecto a un espacio en Github y acogerlo a una licencia de software libre.
-Ciudades a considerar : **Cali**
+### Ciudades a considerar : **Cali**
