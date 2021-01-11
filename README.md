@@ -1,4 +1,4 @@
-# Taller de Weka - Software Libre
+# Taller de Weka - Software Libre 20-02
 
 ## Descripción
 Usando la información del portal
@@ -15,3 +15,9 @@ Tener en cuenta 3 Clusters.
 - Cargar las librerias de manera relativa en el proyecto de Netbeans, adjuntar el proyecto.
 - Subir el proyecto a un espacio en Github y acogerlo a una licencia de software libre.
 ### Ciudades a considerar : **Cali**
+
+## Docente : ** Gabriel Elias Chanchi Golondrino**
+## Integrantes
+- **Mario Barrios Pacheco**
+- **Luis Cervates** 
+- **Eugenio Pájaro Almagro**
