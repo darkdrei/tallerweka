@@ -16,7 +16,7 @@ Tener en cuenta 3 Clusters.
 - Subir el proyecto a un espacio en Github y acogerlo a una licencia de software libre.
 ### Ciudades a considerar : **Cali**
 
-## Docente : ** Gabriel Elias Chanchi Golondrino**
+## Docente : **Gabriel Elias Chanchi Golondrino**
 ## Integrantes
 - **Mario Barrios Pacheco**
 - **Luis Cervates** 
