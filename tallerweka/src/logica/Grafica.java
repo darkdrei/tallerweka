@@ -54,7 +54,7 @@ public class Grafica {
         renderer.setSeriesShapesVisible(1, false);
         plot.setRenderer(renderer);
         plot.setBackgroundPaint(Color.white);
-        ChartPanel cp = new ChartPanel(chart);
+        ChartPanel cp = new ChartPanel(chart, false);
         return cp;
     }
 
@@ -68,7 +68,7 @@ public class Grafica {
 
         XYPlot plot = (XYPlot) chart.getXYPlot();
         plot.setBackgroundPaint(Color.white);
-        ChartPanel cp = new ChartPanel(chart);
+        ChartPanel cp = new ChartPanel(chart, false);
         return cp;
     }
 }
